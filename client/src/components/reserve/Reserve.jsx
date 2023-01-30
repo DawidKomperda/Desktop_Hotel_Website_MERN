@@ -48,7 +48,7 @@ const Reserve = ({ setOpen, hotelId }) => {
     try {
       await Promise.all(
         selectedRooms.map((roomId) => {
-          const res = axios.putf(`https://mern-hotel-server.onrender.com/api/rooms/availability/${roomId}`, {
+          const res = axios.put(`https://mern-hotel-server.onrender.com/api/rooms/availability/${roomId}`, {
             dates: allDates,
           });
           return res.data;

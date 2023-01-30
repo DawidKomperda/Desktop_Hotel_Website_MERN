@@ -7,6 +7,10 @@ import { format } from "date-fns";
 import { DateRange } from "react-date-range";
 import SearchItem from "../../components/searchItem/SearchItem";
 import useFetch from "../../hooks/useFetch";
+import { SearchContext } from "../../context/SearchContext";
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+
 
 const List = () => {
   const capitalizeFirst = str => {
@@ -15,17 +19,26 @@ const List = () => {
   
   const location = useLocation();
   const [destination, setDestination] = useState(location.state.destination);
-  const [dates, setDates] = useState(location.state.dates);
+  const [dates, setDates] = useState([
+    {
+      startDate: new Date(),
+      endDate: new Date(),
+      key: "selection",
+    },
+  ]);
   const [openDate, setOpenDate] = useState(false);
   const [options] = useState(location.state.options);
   const [min, setMin] = useState(undefined);
   const [max, setMax] = useState(undefined);
   const searchDestination = capitalizeFirst(destination);
-
   const { data, loading, error,  reFetchData } = useFetch(`https://mern-hotel-server.onrender.com/api/hotels?city=${searchDestination}&min=${min || 0 }&max=${max || 999 }`)
+  const { dispatch } = useContext(SearchContext);
+  const navigate = useNavigate();
 
   const handleClick = () => {
     reFetchData();
+    dispatch({ type:"NEW_SEARCH", payload: { destination, dates, options } });
+    navigate("/hotels", { state: { destination, dates, options } });
   }
   return (
     <div>
@@ -37,7 +50,7 @@ const List = () => {
             <h1 className="lsTitle">Search</h1>
             <div className="lsItem">
               <label>Destination</label>
-              <input placeholder={destination} type="text" />
+              <input placeholder={destination} onChange={(e) => setDestination(e.target.value)} type="text" />
             </div>
             <div className="lsItem">
               <label>Check-in Date</label>
