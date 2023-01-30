@@ -25,7 +25,7 @@ const Hotel = () => {
   const [slideNumber, setSlideNumber] = useState(0);
   const [open, setOpen] = useState(false);
   const [openModal, setOpenModal] = useState(false);
-  const { data, loading } = useFetch(`http://localhost:8800/api/hotels/find/${id}`);
+  const { data, loading } = useFetch(`https://mern-hotel-server.onrender.com/api/hotels/find/${id}`);
   const { dates, options } = useContext(SearchContext);
   const MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24;
   function dayDiffrence(date1, date2) {

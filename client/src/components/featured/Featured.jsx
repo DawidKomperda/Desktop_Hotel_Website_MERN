@@ -3,7 +3,7 @@ import "./featured.css";
 
 const Featured = () => {
 
-  const { data, loading, error,  reFetchData } = useFetch('http://localhost:8800/api/hotels/countByCity?cities=Berlin,Madrid,London')
+  const { data, loading, error,  reFetchData } = useFetch('https://mern-hotel-server.onrender.com/api/hotels/countByCity?cities=Berlin,Madrid,London')
 
   return (
     <div className="featured">

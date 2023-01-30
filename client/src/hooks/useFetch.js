@@ -39,17 +39,3 @@ const useFetch = (url) => {
 export default useFetch;
 
 
-//  useEffect(() => {
-//     const fetchData = async () => {
-//       try {
-//          const res = await fetch("http://localhost:8800/api/hotels");
-//          const data = await res.json();
-//          setData(data);
-//          setLoading(false);
-//       } catch (error) {
-//          setError(error);
-//          setLoading(false);
-//       }
-//     };
-//     fetchData();
-//  }, [url]);

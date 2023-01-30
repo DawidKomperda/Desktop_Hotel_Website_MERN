@@ -22,7 +22,7 @@ const List = () => {
   const [max, setMax] = useState(undefined);
   const searchDestination = capitalizeFirst(destination);
 
-  const { data, loading, error,  reFetchData } = useFetch(`http://localhost:8800/api/hotels?city=${searchDestination}&min=${min || 0 }&max=${max || 999 }`)
+  const { data, loading, error,  reFetchData } = useFetch(`https://mern-hotel-server.onrender.com/api/hotels?city=${searchDestination}&min=${min || 0 }&max=${max || 999 }`)
 
   const handleClick = () => {
     reFetchData();

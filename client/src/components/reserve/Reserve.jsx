@@ -10,7 +10,7 @@ import './reserve.css';
 const Reserve = ({ setOpen, hotelId }) => {
 
   const [selectedRooms, setSelectedRooms] = useState([])
-  const { data } = useFetch(`http://localhost:8800/api/hotels/room/${hotelId}`)
+  const { data } = useFetch(`https://mern-hotel-server.onrender.com/api/hotels/room/${hotelId}`)
   const {dates } = useContext(SearchContext)
 
   const getDatesInRange = (startDate, endDate) => {
@@ -48,7 +48,7 @@ const Reserve = ({ setOpen, hotelId }) => {
     try {
       await Promise.all(
         selectedRooms.map((roomId) => {
-          const res = axios.putf(`http://localhost:8800/api/rooms/availability/${roomId}`, {
+          const res = axios.putf(`https://mern-hotel-server.onrender.com/api/rooms/availability/${roomId}`, {
             dates: allDates,
           });
           return res.data;
