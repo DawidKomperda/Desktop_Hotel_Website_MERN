@@ -52,7 +52,7 @@ const List = () => {
               <label>Destination</label>
               <input placeholder={destination} onChange={(e) => setDestination(e.target.value)} type="text" />
             </div>
-            <div className="lsItem">
+            {/* <div className="lsItem">
               <label>Check-in Date</label>
               <span onClick={() => setOpenDate(!openDate)}>{`${format(
                 dates[0].startDate,
@@ -110,7 +110,7 @@ const List = () => {
                 </div>
               </div>
             </div>
-            <button onClick={handleClick}>Search</button>
+            <button onClick={handleClick}>Search</button> */}
           </div>
           <div className="listResult">
             {loading ? "loading" : <>

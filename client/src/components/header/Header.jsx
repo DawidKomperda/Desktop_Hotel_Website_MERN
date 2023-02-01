@@ -53,6 +53,14 @@ const Header = ({ type }) => {
     dispatch({ type:"NEW_SEARCH", payload: { destination, dates, options } });
     navigate("/hotels", { state: { destination, dates, options } });
   };
+
+  const handleClick = () => {
+    if (user) {
+      setOpenModal(true);
+    } else {
+      navigate("/login");
+    }
+  }
   
  
 
@@ -94,7 +102,8 @@ const Header = ({ type }) => {
               Get rewarded for your travels – unlock instant savings of 10% or
               more with a free Hotel Hercules account
             </p>
-            {!user && <button className="headerBtn">Sign in / Register</button>}
+            <h2> For login please use username <b>Test</b> and password <b>123</b></h2>
+            {!user && <button className="headerBtn" onClick={handleClick} >Sign in</button>}
             <div className="headerSearch">
               <div className="headerSearchItem">
                 <FontAwesomeIcon icon={faBed} className="headerIcon" />
@@ -117,7 +126,10 @@ const Header = ({ type }) => {
                 {openDate && (
                   <DateRange
                     editableDateInputs={true}
-                    onChange={(item) => setDates([item.selection])}
+                    // if item.selection is empty use todays date
+                    
+                    
+                    onChange={(item) => setDates([item.selection] ? [item.selection] : [ new Date() ])}
                     moveRangeOnFirstSelection={false}
                     ranges={dates}
                     className="date"
